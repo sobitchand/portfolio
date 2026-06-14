@@ -1,5 +1,20 @@
 import type { Metadata } from 'next';
+import { Space_Mono, Inter } from 'next/font/google';
 import '../globals.css';
+
+const spaceMono = Space_Mono({
+  weight: ['400', '700'],
+  subsets: ['latin'],
+  variable: '--font-space-mono',
+  display: 'swap',
+});
+
+const inter = Inter({
+  weight: ['300', '400', '500', '600', '700', '800'],
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'Er. Purushottam Chand Bohora | Founder & Tech Architect',
@@ -56,18 +71,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={`${spaceMono.variable} ${inter.variable}`}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <meta name="theme-color" content="#0a0e27" />
         <link rel="icon" href="/favicon.ico" />
-        
-        {/* Google Fonts */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700;800&display=swap"
-          rel="stylesheet"
-        />
 
         {/* Preload critical assets */}
         <link rel="preload" as="image" href="/portrait.jpg" />

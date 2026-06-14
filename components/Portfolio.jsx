@@ -3,6 +3,112 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+// ============================================
+// GLOWING 3D GEOMETRY
+// ============================================
+function GlowingGeometry() {
+  const CUBE_SIZE = 80;
+  const HALF = CUBE_SIZE / 2;
+  const faces = [
+    { transform: `translateZ(${HALF}px)` },
+    { transform: `translateZ(-${HALF}px) rotateY(180deg)` },
+    { transform: `translateX(-${HALF}px) rotateY(-90deg)` },
+    { transform: `translateX(${HALF}px) rotateY(90deg)` },
+    { transform: `translateY(-${HALF}px) rotateX(90deg)` },
+    { transform: `translateY(${HALF}px) rotateX(-90deg)` },
+  ];
+  const floatDots = [
+    { top: '8px',  left: '8px',  color: '#00ffcc' },
+    { top: '8px',  right: '8px', color: '#00ff88' },
+    { bottom: '8px', left: '8px',  color: '#00ff88' },
+    { bottom: '8px', right: '8px', color: '#00ffcc' },
+  ];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 1, delay: 0.4 }}
+      style={{ width: '220px', height: '220px', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}
+    >
+      {/* Outer orbit ring */}
+      <motion.div
+        animate={{ rotate: 360 }}
+        transition={{ duration: 14, repeat: Infinity, ease: 'linear' }}
+        style={{
+          position: 'absolute', width: '200px', height: '200px',
+          borderRadius: '50%',
+          border: '1px solid rgba(0,255,204,0.22)',
+          boxShadow: '0 0 18px rgba(0,255,204,0.1)',
+        }}
+      >
+        <div style={{
+          position: 'absolute', top: '-5px', left: 'calc(50% - 5px)',
+          width: '10px', height: '10px', borderRadius: '50%',
+          background: '#00ffcc', boxShadow: '0 0 12px 4px rgba(0,255,204,0.75)',
+        }} />
+      </motion.div>
+
+      {/* Inner orbit ring — tilted so it reads as 3-D */}
+      <div style={{ position: 'absolute', width: '140px', height: '140px', transform: 'rotateX(65deg)' }}>
+        <motion.div
+          animate={{ rotate: -360 }}
+          transition={{ duration: 9, repeat: Infinity, ease: 'linear' }}
+          style={{
+            width: '100%', height: '100%', borderRadius: '50%', position: 'relative',
+            border: '1px solid rgba(0,255,136,0.35)',
+            boxShadow: '0 0 12px rgba(0,255,136,0.15)',
+          }}
+        >
+          <div style={{
+            position: 'absolute', top: '-4px', left: 'calc(50% - 4px)',
+            width: '8px', height: '8px', borderRadius: '50%',
+            background: '#00ff88', boxShadow: '0 0 10px 3px rgba(0,255,136,0.75)',
+          }} />
+        </motion.div>
+      </div>
+
+      {/* 3-D wireframe rotating cube */}
+      <div style={{ perspective: '500px', width: `${CUBE_SIZE}px`, height: `${CUBE_SIZE}px` }}>
+        <motion.div
+          animate={{ rotateY: 360, rotateX: 25 }}
+          transition={{ duration: 7, repeat: Infinity, ease: 'linear' }}
+          style={{ width: `${CUBE_SIZE}px`, height: `${CUBE_SIZE}px`, transformStyle: 'preserve-3d', position: 'relative' }}
+        >
+          {faces.map((face, i) => (
+            <div
+              key={i}
+              style={{
+                position: 'absolute',
+                width: `${CUBE_SIZE}px`, height: `${CUBE_SIZE}px`,
+                border: `1.5px solid rgba(0,255,${i % 2 === 0 ? '204' : '136'},${0.85 - i * 0.08})`,
+                background: `rgba(0,255,${i % 2 === 0 ? '204' : '136'},0.03)`,
+                boxShadow: i < 2 ? '0 0 14px rgba(0,255,204,0.45)' : undefined,
+                ...face,
+              }}
+            />
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Pulsing corner dots */}
+      {floatDots.map((dot, i) => (
+        <motion.div
+          key={i}
+          animate={{ opacity: [0.35, 1, 0.35], scale: [0.8, 1.3, 0.8] }}
+          transition={{ duration: 2 + i * 0.4, repeat: Infinity, ease: 'easeInOut', delay: i * 0.3 }}
+          style={{
+            position: 'absolute',
+            width: '6px', height: '6px', borderRadius: '50%',
+            background: dot.color,
+            boxShadow: `0 0 8px 3px ${dot.color}99`,
+            top: dot.top, left: dot.left, right: dot.right, bottom: dot.bottom,
+          }}
+        />
+      ))}
+    </motion.div>
+  );
+}
 
 // ============================================
 // HERO SECTION
@@ -78,6 +184,10 @@ export function HeroSection() {
           </p>
         </motion.div>
 
+        {/* Geometry + Portrait side by side */}
+        <div className="flex items-center justify-center gap-8 sm:gap-14 flex-wrap">
+        <GlowingGeometry />
+
         {/* Profile Image — controlled, responsive size with a subtle clamped tilt */}
         <motion.div
           initial={{ opacity: 0, scale: 0.92 }}
@@ -139,6 +249,7 @@ export function HeroSection() {
             </motion.div>
           </motion.div>
         </motion.div>
+        </div>{/* end geometry + portrait row */}
 
         {/* Philosophy */}
         <motion.div
@@ -151,7 +262,7 @@ export function HeroSection() {
             Self-Trust Wins Wars
           </h2>
           <p className="text-lg md:text-xl text-[#cbd5e1] font-normal leading-relaxed">
-            Strategy beats effort. Consistency completes what you've started.
+            Strategy beats effort. Consistency completes what you&apos;ve started.
           </p>
           <div className="h-1 w-24 bg-gradient-to-r from-[#00ffcc] to-[#00ff88] mx-auto rounded-full" />
         </motion.div>
@@ -549,7 +660,7 @@ export function LiveActivityWidget() {
 // ============================================
 export default function Portfolio() {
   return (
-    <div className="w-full bg-transparent text-white overflow-hidden">
+    <div className="w-full bg-transparent text-white overflow-hidden" style={{ position: 'relative', zIndex: 1 }}>
       <HeroSection />
       <IdentityCards />
       <ProjectMatrix />
