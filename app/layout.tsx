@@ -72,7 +72,7 @@ export default function RootLayout({
         {/* Preload critical assets */}
         <link rel="preload" as="image" href="/portrait.jpg" />
       </head>
-      <body className="bg-obsidian text-white antialiased">
+      <body className="bg-transparent text-white antialiased">
         {/* Skip to main content link for accessibility */}
         <a
           href="#main-content"

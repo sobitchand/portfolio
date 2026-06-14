@@ -1,4 +1,5 @@
 import Portfolio from '@/components/Portfolio';
+import HumanFigureScene from '@/components/HumanFigureScene';
 
 export const metadata = {
   title: 'Er. Purushottam Chand Bohora | Founder & Tech Architect',
@@ -9,6 +10,7 @@ export const metadata = {
 export default function Home() {
   return (
     <main className="w-full">
+      <HumanFigureScene />
       <Portfolio />
     </main>
   );

@@ -35,7 +35,7 @@ export function HeroSection() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: 'easeOut' }}
-      className="relative min-h-screen bg-gradient-to-b from-[#0a0e27] via-[#0f1419] to-[#0a0e27] flex flex-col items-center justify-center px-4 py-28 overflow-hidden"
+      className="relative min-h-screen bg-transparent flex flex-col items-center justify-center px-4 py-28 overflow-hidden"
     >
       {/* Animated background grid effect */}
       <div className="absolute inset-0 opacity-[0.07] pointer-events-none">
@@ -184,6 +184,7 @@ export function HeroSection() {
             whileHover={{ scale: 1.05, boxShadow: '0 0 25px rgba(0, 255, 204, 0.6)' }}
             whileTap={{ scale: 0.96 }}
             className="px-8 py-3 bg-[#00ffcc] text-[#0a0e27] font-semibold rounded-lg hover:bg-[#00ff88] transition-colors duration-300 text-lg"
+            onClick={() => document.getElementById('ventures')?.scrollIntoView({ behavior: 'smooth' })}
           >
             Explore Ventures
           </motion.button>
@@ -191,6 +192,7 @@ export function HeroSection() {
             whileHover={{ scale: 1.05, boxShadow: '0 0 25px rgba(0, 255, 204, 0.4)' }}
             whileTap={{ scale: 0.96 }}
             className="px-8 py-3 border-2 border-[#00ffcc] text-[#00ffcc] font-semibold rounded-lg hover:bg-[#00ffcc]/10 transition-colors duration-300 text-lg"
+            onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
           >
             View Projects
           </motion.button>
@@ -228,7 +230,8 @@ export function IdentityCards() {
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
-      className="relative py-24 px-4 bg-gradient-to-b from-[#0a0e27] to-[#0f1419]"
+      id="ventures"
+      className="relative py-24 px-4 bg-transparent"
     >
       <div className="max-w-7xl mx-auto">
         <motion.h2
@@ -313,7 +316,8 @@ export function ProjectMatrix() {
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
-      className="relative py-24 px-4 bg-gradient-to-b from-[#0f1419] to-[#0a0e27]"
+      id="projects"
+      className="relative py-24 px-4 bg-transparent"
     >
       <div className="max-w-7xl mx-auto">
         <motion.h2
@@ -414,7 +418,7 @@ export function TechnicalArsenal() {
     },
     {
       name: 'FULL-STACK',
-      skills: ['React', 'Next.js', 'Node.js', 'Express', 'SQL/NoSQL'],
+      skills: ['React', 'Next.js', 'Node.js', 'Express', 'SQL/NoSQL', 'PHP', 'Python'],
     },
     {
       name: 'HOSTING & CLOUD',
@@ -428,7 +432,7 @@ export function TechnicalArsenal() {
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
-      className="relative py-24 px-4 bg-gradient-to-b from-[#0a0e27] to-[#0f1419]"
+      className="relative py-24 px-4 bg-transparent"
     >
       <div className="max-w-7xl mx-auto">
         <motion.h2
@@ -545,7 +549,7 @@ export function LiveActivityWidget() {
 // ============================================
 export default function Portfolio() {
   return (
-    <div className="w-full bg-[#0a0e27] text-white overflow-hidden">
+    <div className="w-full bg-transparent text-white overflow-hidden">
       <HeroSection />
       <IdentityCards />
       <ProjectMatrix />
@@ -553,7 +557,7 @@ export default function Portfolio() {
       <LiveActivityWidget />
 
       {/* Footer */}
-      <footer className="bg-[#0f1419] border-t border-[#00ffcc]/20 py-12 px-4">
+      <footer className="bg-black/50 backdrop-blur-sm border-t border-[#00ffcc]/20 py-12 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <p className="font-normal text-base text-[#4a5568] mb-2">
             Er. Purushottam Chand Bohora © 2024
