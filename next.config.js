@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
+const isDev = process.env.NODE_ENV === 'development';
+
 const nextConfig = {
+  allowedDevOrigins: ['192.168.56.1'],
+
   // Only allow images from the local public/ directory
   images: {
     remotePatterns: [],
@@ -36,8 +40,8 @@ const nextConfig = {
             key: 'Content-Security-Policy',
             value: [
               "default-src 'self'",
-              // Next.js inline scripts + framer-motion require unsafe-inline
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+              // unsafe-eval is required by React in dev mode only (stack-trace reconstruction)
+              `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
               // Tailwind inline styles + framer-motion
               "style-src 'self' 'unsafe-inline' https://db.onlinewebfonts.com",
               "font-src 'self' https://db.onlinewebfonts.com",

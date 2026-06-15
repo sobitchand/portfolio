@@ -671,7 +671,7 @@ export default function Portfolio() {
       <footer className="bg-black/50 backdrop-blur-sm border-t border-[#00ffcc]/20 py-12 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <p className="font-normal text-base text-[#4a5568] mb-2">
-            Er. Purushottam Chand Bohora © 2024
+            Er. Purushottam Chand Bohora © {new Date().getFullYear()}
           </p>
           <p className="font-normal text-sm text-[#2d3748] tracking-normal">
             All rights reserved.

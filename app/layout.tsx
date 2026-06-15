@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Space_Mono, Inter } from 'next/font/google';
 import '../globals.css';
 
@@ -15,6 +15,12 @@ const inter = Inter({
   variable: '--font-inter',
   display: 'swap',
 });
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#0a0e27',
+};
 
 export const metadata: Metadata = {
   title: 'Er. Purushottam Chand Bohora | Founder & Tech Architect',
@@ -35,22 +41,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://yourportfolio.com',
     siteName: 'Er. Purushottam Chand Bohora',
     title: 'Er. Purushottam Chand Bohora | Founder & Tech Architect',
     description:
       'Securing the Web. Building the Future of SaaS. Cybersecurity Engineer and Startup Founder.',
-    images: [
-      {
-        url: 'https://yourportfolio.com/og-image.jpg',
-        width: 1200,
-        height: 630,
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
-    creator: '@yourhandle',
   },
   robots: {
     index: true,
@@ -73,12 +70,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${spaceMono.variable} ${inter.variable}`}>
       <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-        <meta name="theme-color" content="#0a0e27" />
         <link rel="icon" href="/favicon.ico" />
-
-        {/* Preload critical assets */}
         <link rel="preload" as="image" href="/portrait.jpg" />
       </head>
       <body className="bg-transparent text-white antialiased">

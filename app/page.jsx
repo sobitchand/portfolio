@@ -9,9 +9,9 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <main className="w-full">
+    <div className="w-full">
       <HumanFigureScene />
       <Portfolio />
-    </main>
+    </div>
   );
 }
