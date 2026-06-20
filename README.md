@@ -75,7 +75,8 @@ All the page content lives in one file: [`components/Portfolio.jsx`](components/
 - Accent cyan: `#00ffcc`
 - Accent green: `#00ff88`
 
-**Tuning the 3D tilt:** the portrait's tilt is controlled by the `MAX_TILT` constant at the top of `HeroSection` (degrees). Lower it for a flatter look, raise it for more drama — it's clamped so it never over-rotates.
+**Tuning the 3D tilt:** the portrait's tilt is controlled by the `MAX_TILT` constant at the top of `HeroSection` (degrees). Lower it for a flatter look, raise it for more drama — it's clamped so it never over-rotates.and it is pretty cool i think and you can use your own idea to make it better
+
 
 ## Project structure
 
@@ -105,4 +106,4 @@ Every push to `main` redeploys automatically. It also runs on any host that supp
 
 ## License
 
-[MIT](LICENSE) — free to use, modify, and learn from. If you ship your own version, swap out the personal content and photo.
+[MIT](LICENSE) — free to use, modify, and learn from. If you ship your own version, swap out the personal content and photo .
